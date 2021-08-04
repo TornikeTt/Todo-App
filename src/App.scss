@@ -1,0 +1,312 @@
+@mixin flex( $direction, $justify, $align ) { 
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// main width for input and border where we see inputs
+$main_width : 500px;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+main { 
+  position: relative;
+}
+
+.back_image { 
+  width: 100%;
+}
+
+section { 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /*margin-right: -50%;*/
+  transform: translate(-50%, -50%);
+}
+
+// Tasks Header ============================================ START
+
+.tasks_header { 
+  position: relative;
+
+  .header_text_icone { 
+    @include flex(row , space-between, center);
+
+    h1 { 
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 35px; 
+      color: white;
+      letter-spacing: 16px;
+    }
+    img { 
+      cursor: pointer;
+    }
+  }
+
+  .inputArea { 
+    position: relative;
+    width: $main_width;
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 40px;
+
+    input { 
+      font-family: 'Josefin Sans', sans-serif;
+      width: $main_width;
+      height: 60px;
+      border-radius: 5px;
+      padding-left: 60px;
+      border: none;
+      outline: none;
+
+      &::placeholder { 
+        color: hsl(236, 9%, 61%);
+        font-weight: 500;
+      }
+    }
+  
+    .circle { 
+      position: absolute;
+      top: calc(50% - 13px);
+      left: 20px;
+      margin-right: -50%;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 1px solid;
+    }
+  }
+
+}
+
+// Tasks Header ============================================  END
+
+article { 
+  width: $main_width;
+  height: 350px;
+  border-radius: 5px;
+  position: absolute;
+  top: 160px;
+  
+  .tasks { 
+    width: 100%;
+    height: 92%;
+    overflow: auto;
+
+    .line { 
+      width: 100%;
+      height: 1px;
+      background-color: hsl(234, 39%, 85%);
+    }
+  }
+
+  .each_task { 
+    @include flex(row , flex-start, center);
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    padding-left: 60px;
+
+    .checkbox_circle { 
+      position: absolute;
+      top: calc(50% - 13px);
+      left: 20px;
+      margin-right: -50%;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      border: 1px solid hsl(235, 24%, 19%);
+      cursor: pointer;
+      @include flex( row , center, center );
+
+        &:hover {
+          background: linear-gradient(
+          hsl(192, 100%, 67%),
+          hsl(280, 87%, 65%));
+        }
+
+        .check { 
+          width: 95%;
+          height: 95%;
+          border-radius: 50%;
+          @include flex( row , center , center);
+        }
+    }
+
+    p { 
+      @include flex(row , flex-start, center);
+      width: 390px;
+      height: 50px;
+      overflow: auto;
+      cursor: pointer;
+    }
+
+    .crossIcone { 
+      padding-left: 10px;
+      cursor: pointer;
+    }
+  }
+
+}
+
+Footer { 
+  @include flex(row, space-around, flex-end);
+  width: 100%;
+  
+  div { 
+    @include flex(row, space-between, center);
+    width: 180px;
+    p:first-child { 
+      color: blue;
+    }
+
+  }
+
+  p { 
+    cursor: pointer;
+    color: hsl(236, 9%, 61%);
+  }
+
+}
+
+.back-color { 
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+}
+
+
+
+
+.show_only_mobileVersion { 
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// here classes which toggle after some hook change state 
+.backgLinear { 
+ background-image: linear-gradient( hsl(192, 100%, 67%), hsl(280, 87%, 65%) );
+}
+
+.complate { 
+  text-decoration: line-through;
+  opacity: 0.5;
+  color: black;
+}
+
+.checkWhite { 
+  background-color: white;
+}
+
+.checkBlack { 
+  background-color: rgb(57, 58, 76) ;
+}
+
+// here classes which toggle after some hook change state 
+
+
+
+
+@media (max-width: 375px) { 
+  .tasks_header { 
+
+    .header_text_icone { 
+      width: 350px;
+      h1 { 
+        font-size: 20px;
+      }
+    }
+
+    .inputArea { 
+      width: 350px;
+      input { 
+        width: 350px;
+      }
+    }
+
+  }
+
+
+article { 
+  width: 350px; 
+  top: 140px;
+  
+
+  .each_task { 
+
+    p { 
+      width: 300px;
+    }
+
+    .crossIcone { 
+      padding-right: 20px;
+      cursor: pointer;
+    }
+
+  }
+
+
+
+  Footer { 
+    @include flex(row, space-between, flex-end);
+    width: 90%;
+    margin: auto;
+    
+    div { 
+      @include flex(row, space-between, center);
+      width: 180px;
+      p:first-child { 
+        color: blue;
+      }
+      
+      display: none;
+    }
+
+    p { 
+      cursor: pointer;
+      color: hsl(236, 9%, 61%);
+    }
+
+  }
+  
+  .show_only_mobileVersion { 
+    display: block;
+    @include flex(row, center, center);
+    width: 350px;
+    height: 30px;
+    margin-top: 15px;
+    border-radius: 5px;
+
+    p:first-child { 
+      color: blue;
+    }
+
+    p { 
+      margin-left: 20px;
+    }
+  }
+
+}
+
+}
+
