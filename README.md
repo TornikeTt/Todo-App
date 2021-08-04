@@ -1,5 +1,5 @@
 # Todo list
- ![main image](src/public/designe/desktop%20preview.jpg)
+<img src="src/public/designe/desktop%20preview.jpg" />
 
 # in this Todo list you can
   * add new "Tasks"
